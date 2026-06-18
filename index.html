@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>مهر نمازاحسان | مُهر نماز و ملزومات معنوی</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+<body>
+
+    <!-- ========== Loader ========== -->
+    <div id="loader">
+        <div class="loader-circle">
+            <div class="loader-inner"></div>
+        </div>
+        <h2>در حال آماده‌سازی ورود به سایت...</h2>
+    </div>
+
+    <!-- ========== صفحه اصلی ========== -->
+    <div id="page" class="hidden">
+
+        <!-- هدر -->
+        <header class="navbar">
+            <div class="nav-left">
+                <img src="logo.png" alt="لوگوی احسان" class="logo">
+                <div class="brand-text">
+                    <h1> احسان</h1>
+                    <span>مُهر نماز | هنر عبادت</span>
+                </div>
+            </div>
+
+            <nav class="nav-links">
+                <a href="index.html">خانه</a>
+                <a href="gallery.html">محصولات</a>
+                <a href="cart.html">سبد خرید</a>
+                <a href="#" onclick="logoutUser(); return false;">خروج</a>
+            </nav>
+
+            <a href="login.html" id="user-info" style="text-decoration:none;"></a>
+
+
+        </header>
+
+        <!-- هیرو -->
+        <section id="hero" class="hero">
+            <div class="hero-content">
+                <h2 class="hero-title">مُهر نماز احسان</h2>
+                <p class="hero-subtitle">
+                    ترکیب دقت هنری، خاک متبرک و طراحی مدرن؛ برای سجده‌هایی که فراموش نمی‌شوند.
+                </p>
+                <div class="hero-buttons">
+                    <a href="gallery.html" class="btn-primary">مشاهده محصولات</a>
+                    <a href="#about" class="btn-secondary">داستان برند احسان</a>
+                </div>
+            </div>
+            <div class="hero-image-wrapper">
+                <img src="product-main.jpg" alt="مهر نماز احسان" class="hero-image">
+                <div class="hero-glow"></div>
+            </div>
+        </section>
+
+        <!-- مزیت‌ها -->
+        <section id="features" class="section features">
+            <h2 class="section-title">چرا مُهر احسان؟</h2>
+            <div class="cards">
+                <div class="card">
+                    <div class="card-icon">✨</div>
+                    <h3>خاک متبرک و اصیل</h3>
+                    <p>استفاده از مواد اولیه باکیفیت و مورد اعتماد، مناسب برای استفاده طولانی‌مدت.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon">🎨</div>
+                    <h3>طراحی هنری و مذهبی</h3>
+                    <p>نقوش اسلیمی و نام مبارک اهل‌بیت(ع)، متناسب با سلیقه‌ی متدیّن امروز.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon">🎁</div>
+                    <h3>بسته‌بندی شیک</h3>
+                    <p>مناسب برای هدیه‌دادن در مناسبت‌های مذهبی و مراسم خاص.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- حرم امام رضا -->
+        <section id="gallery" class="section gallery">
+            <h2 class="section-title">حرم امام رضا</h2>
+            <div class="gallery-grid">
+                <div class="gallery-item"><img src="reza1.jpg" alt="امام رضا 1"></div>
+                <div class="gallery-item"><img src="reza2.jpg" alt="امام رضا 2"></div>
+                <div class="gallery-item"><img src="reza3.jpg" alt="امام رضا 3"></div>
+            </div>
+        </section>
+
+        <!-- درباره ما -->
+        <section id="about" class="section about">
+            <h2 class="section-title">درباره برند احسان</h2>
+            <p>
+                برند احسان با هدف تلفیق زیبایی‌شناسی اسلامی و کیفیت صنعتی شکل گرفت.
+                ما باور داریم که ابزار عبادت، خود باید یادآور احترام، نظم و زیبایی باشد.
+            </p>
+        </section>
+
+        <!-- بخش درباره مالک و آمار -->
+        <section id="about-owner" class="owner-section">
+            <div class="container">
+                <div class="owner-content">
+                    <div class="owner-text">
+                        <h2 class="section-title">اصالت و تجربه</h2>
+                        <h3>جناب آقای سید جواد هاشمی</h3>
+                        <p class="experience-badge">بیش از ۲۰ سال سابقه درخشان</p>
+                        <p class="description">
+                            برند احسان با مدیریت سید جواد هاشمی، بیش از دو دهه است که در تار و پود عبادت مؤمنان ریشه دوانده.
+                        </p>
+                        <div class="contact-info-box">
+                            <p>📍 آدرس: خراسان رضوی، مشهد، بلوار پنجتن</p>
+                            <p>📞 تماس: 09159123914</p>
+                            <p>📞 تماس: 09930813843</p>
+                            <p> Mohre_namaz_ehsan:آدرس اینستاگرام</p>
+                        </div>
+                    </div>
+
+                    <div class="stats-container">
+                        <div class="stat-card">
+                            <div class="stat-icon">🕋</div>
+                            <div class="stat-number" id="mohr-counter" data-target="125350750">۰</div>
+                            <p>تعداد مهر فروخته شده در 20 سال گذشته</p>
+                            <div class="progress-bar-wrap">
+                                <div class="progress-bar-fill"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- فوتر -->
+        <footer class="footer">
+            <span>تمام حقوق این وب‌سایت متعلق به برند مهر نماز احسان است.</span>
+        </footer>
+
+    </div>
+
+    <script>
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                document.getElementById('loader').classList.add('hide');
+                document.getElementById('page').classList.remove('hidden');
+            }, 1800);
+        });
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const user = JSON.parse(localStorage.getItem('ehsan_user'));
+            const userInfo = document.getElementById('user-info');
+
+            if (user && userInfo) {
+                userInfo.innerHTML = `خوش آمدید، ${user.name}`;
+            } else if (userInfo) {
+                userInfo.innerHTML = 'مهمان عزیز، خوش آمدید';
+            }
+
+            const cards = document.querySelectorAll('.card');
+
+            const fadeObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            cards.forEach(card => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(30px)';
+                card.style.transition = 'all 0.6s ease-out';
+                fadeObserver.observe(card);
+            });
+
+            const targetSection = document.querySelector('.owner-section');
+            if (targetSection) {
+                const statsObserver = new IntersectionObserver((entries) => {
+                    if (entries[0].isIntersecting) {
+                        animateValue();
+                        statsObserver.disconnect();
+                    }
+                }, { threshold: 0.5 });
+
+                statsObserver.observe(targetSection);
+            }
+        });
+
+        function animateValue() {
+            const counter = document.getElementById('mohr-counter');
+            if (!counter) return;
+
+            const target = parseInt(counter.getAttribute('data-target'), 10);
+            const duration = 3000;
+            const startTime = performance.now();
+
+            function update(currentTime) {
+                const elapsed = currentTime - startTime;
+                const progress = Math.min(elapsed / duration, 1);
+                const easeOutProgress = 1 - Math.pow(1 - progress, 3);
+                const currentValue = Math.floor(easeOutProgress * target);
+
+                counter.innerText = currentValue.toLocaleString('en-US');
+
+                if (progress < 1) {
+                    requestAnimationFrame(update);
+                } else {
+                    counter.innerText = target.toLocaleString('en-US');
+                }
+            }
+
+            requestAnimationFrame(update);
+
+            const bar = document.querySelector('.progress-bar-fill');
+            if (bar) {
+                bar.style.width = '100%';
+            }
+        }
+
+        function logoutUser() {
+            Swal.fire({
+                title: 'خروج از حساب؟',
+                text: 'آیا مطمئن هستید که می‌خواهید خارج شوید؟',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'بله، خروج',
+                cancelButtonText: 'لغو',
+                confirmButtonColor: '#D4B26A',
+                cancelButtonColor: '#6c757d',
+                reverseButtons: true
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    localStorage.removeItem('ehsan_user');
+                    Swal.fire({
+                        title: 'خارج شدید',
+                        text: 'شما با موفقیت از حساب خارج شدید.',
+                        icon: 'success',
+                        confirmButtonText: 'باشه',
+                        confirmButtonColor: '#D4B26A'
+                    }).then(() => {
+                        window.location.href = 'login.html';
+                    });
+                }
+            });
+        }
+    </script>
+    <script>
+const reveals = document.querySelectorAll('.reveal');
+
+window.addEventListener('scroll', () => {
+  reveals.forEach(el => {
+    const windowHeight = window.innerHeight;
+    const elementTop = el.getBoundingClientRect().top;
+    if (elementTop < windowHeight - 100) {
+      el.classList.add('active');
+    }
+  });
+});
+</script>
+
+
+</body>
+</html>

@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ورود به سایت | برند احسان</title>
+
+    <link rel="stylesheet" href="style.css" />
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body,
+        input,
+        button {
+            font-family: 'Vazirmatn', 'BKoodak', 'Tahoma', sans-serif !important;
+        }
+
+        body {
+            background:
+                radial-gradient(circle at top right, rgba(212, 178, 106, 0.16), transparent 35%),
+                radial-gradient(circle at bottom left, rgba(255, 255, 255, 0.06), transparent 30%),
+                var(--green-deep);
+            min-height: 100vh;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            overflow-x: hidden;
+        }
+
+        .login-page {
+            width: 100%;
+            min-height: 100vh;
+            padding: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .login-box {
+            width: min(430px, 100%);
+            background: rgba(255, 255, 255, 0.065);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(212, 178, 106, 0.24);
+            border-radius: 28px;
+            padding: 36px 32px;
+            box-shadow:
+                0 24px 60px rgba(0, 0, 0, 0.38),
+                inset 0 1px 0 rgba(255, 255, 255, 0.08);
+            animation: fadeUp 0.8s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .login-box::before {
+            content: "";
+            position: absolute;
+            top: -90px;
+            right: -90px;
+            width: 190px;
+            height: 190px;
+            background: rgba(212, 178, 106, 0.16);
+            border-radius: 50%;
+            filter: blur(4px);
+            pointer-events: none;
+        }
+
+        .login-box::after {
+            content: "";
+            position: absolute;
+            left: -70px;
+            bottom: -70px;
+            width: 150px;
+            height: 150px;
+            background: rgba(255, 255, 255, 0.06);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(28px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .login-header {
+            text-align: center;
+            margin-bottom: 28px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .login-logo {
+            width: 74px;
+            height: 74px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 2px solid rgba(212, 178, 106, 0.55);
+            margin-bottom: 14px;
+            box-shadow: 0 10px 28px rgba(0, 0, 0, 0.28);
+        }
+
+        .login-box h2 {
+            text-align: center;
+            color: var(--gold-soft);
+            margin: 0 0 8px;
+            font-size: 1.65rem;
+            font-weight: 800;
+        }
+
+        .login-subtitle {
+            margin: 0;
+            color: rgba(255, 255, 255, 0.72);
+            font-size: 0.95rem;
+            line-height: 1.9;
+        }
+
+        .login-form {
+            position: relative;
+            z-index: 1;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 8px;
+            color: rgba(255, 255, 255, 0.82);
+            font-size: 0.92rem;
+        }
+
+        .login-box input {
+            width: 100%;
+            padding: 14px 16px;
+            border-radius: 14px;
+            border: 1px solid rgba(212, 178, 106, 0.28);
+            background: rgba(255, 255, 255, 0.085);
+            color: white;
+            outline: none;
+            font-size: 1rem;
+            transition: 0.25s ease;
+        }
+
+        .login-box input:focus {
+            border-color: rgba(212, 178, 106, 0.85);
+            background: rgba(255, 255, 255, 0.115);
+            box-shadow: 0 0 0 4px rgba(212, 178, 106, 0.11);
+        }
+
+        .login-box input::placeholder {
+            color: rgba(255, 255, 255, 0.56);
+        }
+
+        .login-box button {
+            width: 100%;
+            margin-top: 4px;
+            padding: 14px;
+            border: none;
+            border-radius: 14px;
+            background: var(--gold-soft);
+            color: var(--green-deep);
+            font-weight: 900;
+            cursor: pointer;
+            font-size: 1.02rem;
+            transition: 0.28s ease;
+        }
+
+        .login-box button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 14px 28px rgba(212, 178, 106, 0.25);
+        }
+
+        .login-box button:active {
+            transform: translateY(0);
+        }
+
+        .small-note {
+            margin-top: 17px;
+            text-align: center;
+            color: rgba(255, 255, 255, 0.68);
+            font-size: 0.9rem;
+            line-height: 1.9;
+            position: relative;
+            z-index: 1;
+        }
+
+        .back-home {
+            display: inline-block;
+            margin-top: 12px;
+            color: var(--gold-soft);
+            text-decoration: none;
+            font-size: 0.92rem;
+            transition: 0.25s ease;
+        }
+
+        .back-home:hover {
+            opacity: 0.8;
+        }
+
+        .swal2-popup {
+            font-family: 'Vazirmatn', 'BKoodak', 'Tahoma', sans-serif !important;
+            border-radius: 20px !important;
+        }
+
+        .swal2-title,
+        .swal2-html-container,
+        .swal2-confirm,
+        .swal2-cancel {
+            font-family: 'Vazirmatn', 'BKoodak', 'Tahoma', sans-serif !important;
+        }
+
+        @media (max-width: 480px) {
+            .login-page {
+                padding: 16px;
+            }
+
+            .login-box {
+                padding: 30px 22px;
+                border-radius: 24px;
+            }
+
+            .login-box h2 {
+                font-size: 1.45rem;
+            }
+
+            .login-logo {
+                width: 66px;
+                height: 66px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <main class="login-page">
+        <section class="login-box">
+
+            <div class="login-header">
+                <img src="logo.png" alt="لوگوی برند احسان" class="login-logo">
+                <h2>ورود به سایت</h2>
+                <p class="login-subtitle">
+                    برای ادامه خرید، لطفاً اطلاعات خود را وارد کنید.
+                </p>
+            </div>
+
+            <form class="login-form" onsubmit="loginUser(event)">
+                <div class="form-group">
+                    <label for="userName" class="form-label">نام و نام خانوادگی</label>
+                    <input
+                        type="text"
+                        id="userName"
+                        placeholder="مثلاً سید جواد هاشمی"
+                        autocomplete="name"
+                    />
+                </div>
+
+                <div class="form-group">
+                    <label for="userPhone" class="form-label">شماره موبایل</label>
+                    <input
+                        type="tel"
+                        id="userPhone"
+                        placeholder="مثلاً 09123456789"
+                        inputmode="numeric"
+                        autocomplete="tel"
+                        maxlength="11"
+                    />
+                </div>
+
+                <button type="submit">ورود و ادامه خرید</button>
+            </form>
+
+            <div class="small-note">
+                اطلاعات شما فقط برای ثبت و پیگیری سفارش استفاده می‌شود.
+                <br>
+                <a href="index.html" class="back-home">بازگشت به صفحه اصلی</a>
+            </div>
+
+        </section>
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const user = getStoredUser();
+
+            if (user && user.name && user.phone) {
+                window.location.href = 'index.html';
+            }
+        });
+
+        function getStoredUser() {
+            try {
+                return JSON.parse(localStorage.getItem('ehsan_user'));
+            } catch (error) {
+                localStorage.removeItem('ehsan_user');
+                return null;
+            }
+        }
+
+        function normalizeDigits(value) {
+            const persianDigits = ['۰', '۱', '۲', '۳', '۴', '۵', '۶', '۷', '۸', '۹'];
+            const arabicDigits = ['٠', '١', '٢', '٣', '٤', '٥', '٦', '٧', '٨', '٩'];
+
+            return value
+                .split('')
+                .map(char => {
+                    const persianIndex = persianDigits.indexOf(char);
+                    if (persianIndex !== -1) return String(persianIndex);
+
+                    const arabicIndex = arabicDigits.indexOf(char);
+                    if (arabicIndex !== -1) return String(arabicIndex);
+
+                    return char;
+                })
+                .join('');
+        }
+
+        function loginUser(event) {
+            if (event) {
+                event.preventDefault();
+            }
+
+            const nameInput = document.getElementById('userName');
+            const phoneInput = document.getElementById('userPhone');
+
+            const name = nameInput.value.trim();
+            const phone = normalizeDigits(phoneInput.value.trim()).replace(/\s|-/g, '');
+
+            const phoneRegex = /^09[0-9]{9}$/;
+
+            if (!name) {
+                Swal.fire({
+                    icon: 'warning',
+                    title: 'نام وارد نشده',
+                    text: 'لطفاً نام و نام خانوادگی خود را وارد کنید.',
+                    confirmButtonText: 'باشه',
+                    confirmButtonColor: '#D4B26A'
+                });
+
+                nameInput.focus();
+                return;
+            }
+
+            if (name.length < 3) {
+                Swal.fire({
+                    icon: 'warning',
+                    title: 'نام خیلی کوتاه است',
+                    text: 'لطفاً نام خود را کامل‌تر وارد کنید.',
+                    confirmButtonText: 'باشه',
+                    confirmButtonColor: '#D4B26A'
+                });
+
+                nameInput.focus();
+                return;
+            }
+
+            if (!phoneRegex.test(phone)) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'شماره موبایل نامعتبر است',
+                    text: 'شماره موبایل باید با 09 شروع شود و 11 رقم داشته باشد؛ مثل 09123456789.',
+                    confirmButtonText: 'اصلاح می‌کنم',
+                    confirmButtonColor: '#D4B26A'
+                });
+
+                phoneInput.focus();
+                return;
+            }
+
+            const userData = {
+                name: name,
+                phone: phone,
+                loginTime: new Date().toISOString()
+            };
+
+            localStorage.setItem('ehsan_user', JSON.stringify(userData));
+
+            Swal.fire({
+                icon: 'success',
+                title: `خوش آمدید ${name}`,
+                text: 'اکنون می‌توانید خرید خود را انجام دهید.',
+                confirmButtonText: 'ادامه',
+                confirmButtonColor: '#D4B26A'
+            }).then(() => {
+                window.location.href = 'index.html';
+            });
+        }
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>سبد خرید | برند احسان</title>
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        :root {
+            --gold-glow: rgba(212, 178, 106, 0.3);
+        }
+
+        body {
+            background: var(--green-deep);
+            color: white;
+            overflow-x: hidden;
+            font-family: 'BKoodak', 'Tahoma', sans-serif;
+        }
+
+        button,
+        input,
+        textarea,
+        select,
+        option {
+            font-family: 'BKoodak', 'Tahoma', sans-serif;
+        }
+
+        .cart-container {
+            padding: 120px 8% 60px;
+            min-height: 90vh;
+        }
+
+        .cart-glass-panel {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(212, 178, 106, 0.2);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+            animation: slideUp 0.8s ease-out;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .cart-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        .cart-table th {
+            color: var(--gold-soft);
+            text-align: right;
+            padding: 20px;
+            border-bottom: 2px solid var(--gold-soft);
+            font-family: 'BTitr', sans-serif;
+        }
+
+        .cart-table td {
+            padding: 25px 20px;
+            border-bottom: 1px solid rgba(212, 178, 106, 0.1);
+            transition: 0.3s;
+            font-family: 'BKoodak', 'Tahoma', sans-serif;
+        }
+
+        .cart-row:hover td {
+            background: rgba(212, 178, 106, 0.05);
+        }
+
+        /* کانتینر اصلی کنترل تعداد */
+.quantity-controls {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    background: rgba(0, 0, 0, 0.2); /* پس‌زمینه تیره برای تضاد بیشتر */
+    padding: 5px 15px;
+    border-radius: 30px;
+    width: fit-content;
+    margin: 0 auto;
+}
+
+/* دکمه‌های مثبت و منفی */
+        .qty-btn {
+          width: 28px;
+          height: 28px;
+          border-radius: 50%;
+          border: none;
+          background-color: #d4a373; /* رنگ طلایی/خاکی شما */
+          color: #1b4332;
+          font-size: 18px;
+          font-weight: bold;
+          cursor: pointer;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          transition: all 0.3s ease;
+          line-height: 0; /* برای تراز شدن عمودی متن آیکون */
+}
+
+        .qty-btn:hover {
+           background-color: #faedcd;
+           transform: scale(1.1);
+}
+
+        /* عدد تعداد */
+        .qty-value {
+          font-family: 'BTitr', sans-serif;
+          font-size: 1.1rem;
+          color: #ffffff;
+          min-width: 30px;
+          text-align: center;
+}
+
+
+        .btn-remove {
+            color: #ff5e5e;
+            background: rgba(255, 94, 94, 0.1);
+            border: none;
+            padding: 8px 15px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: 0.3s;
+            font-family: 'BKoodak', 'Tahoma', sans-serif;
+        }
+
+        .btn-remove:hover {
+            background: #ff5e5e;
+            color: white;
+            box-shadow: 0 0 15px rgba(255, 94, 94, 0.4);
+        }
+
+        .cart-summary {
+            margin-top: 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 20px;
+            border-top: 2px dashed rgba(212, 178, 106, 0.3);
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .total-price {
+            font-size: 1.4rem;
+            color: var(--gold-soft);
+            font-family: 'BKoodak', 'Tahoma', sans-serif;
+        }
+
+        .btn-checkout {
+            background: var(--gold-soft);
+            color: var(--green-deep);
+            padding: 18px 40px;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            font-weight: bold;
+            font-family: 'BTitr', sans-serif;
+            font-size: 1.1rem;
+            box-shadow: 0 10px 20px var(--gold-glow);
+            transition: 0.4s;
+        }
+
+        .btn-checkout:hover {
+            background: white;
+            transform: translateY(-5px);
+        }
+
+        .empty-cart-msg {
+            text-align: center;
+            padding: 100px 0;
+            font-family: 'BKoodak', 'Tahoma', sans-serif;
+        }
+
+        .empty-cart-msg p {
+            font-family: 'BKoodak', 'Tahoma', sans-serif;
+        }
+
+        .btn-continue {
+            display: inline-block;
+            margin-top: 20px;
+            color: var(--gold-soft);
+            text-decoration: none;
+            border-bottom: 1px solid var(--gold-soft);
+            font-family: 'BKoodak', 'Tahoma', sans-serif;
+        }
+
+        .support-links {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-top: 18px;
+        }
+
+        .support-link {
+            display: block;
+            padding: 12px 16px;
+            border-radius: 12px;
+            text-align: center;
+            text-decoration: none;
+            font-weight: bold;
+            font-family: 'BKoodak', 'Tahoma', sans-serif;
+            transition: 0.3s;
+        }
+
+        .support-link.rubika {
+            background: #1f8cff;
+            color: white;
+        }
+
+        .support-link.eitaa {
+            background: #f28c28;
+            color: white;
+        }
+
+        .support-link.copy {
+            background: var(--gold-soft);
+            color: var(--green-deep);
+            border: none;
+            cursor: pointer;
+            width: 100%;
+            font-size: 1rem;
+        }
+
+        .support-link:hover {
+            transform: translateY(-2px);
+            filter: brightness(1.08);
+        }
+
+        .order-message-box {
+            margin-top: 16px;
+            padding: 14px;
+            border-radius: 12px;
+            background: rgba(3, 71, 50, 0.08);
+            border: 1px solid rgba(212, 178, 106, 0.28);
+            direction: rtl;
+            text-align: right;
+            white-space: pre-line;
+            font-size: 0.92rem;
+            line-height: 2;
+            color: #26382f;
+            max-height: 220px;
+            overflow-y: auto;
+            font-family: 'BKoodak', 'Tahoma', sans-serif;
+        }
+
+        .swal2-popup,
+        .swal2-title,
+        .swal2-html-container,
+        .swal2-confirm,
+        .swal2-cancel,
+        .swal2-deny,
+        .swal2-input,
+        .swal2-textarea {
+            font-family: 'BKoodak', 'Tahoma', sans-serif !important;
+        }
+
+        @media (max-width: 768px) {
+            .cart-container {
+                padding: 90px 4% 40px;
+            }
+
+            .cart-glass-panel {
+                padding: 18px;
+                overflow-x: auto;
+            }
+
+            .cart-table {
+                min-width: 680px;
+            }
+
+            .cart-summary {
+                flex-direction: column;
+                align-items: stretch;
+                text-align: center;
+            }
+
+            .btn-checkout {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header class="navbar">
+        <div class="nav-left">
+            <a href="index.html" style="text-decoration: none; display: flex; align-items: center; color: inherit;">
+                <img src="logo.png" alt="لوگو" class="logo">
+                <div class="brand-text">
+                    <h1>برند احسان</h1>
+                </div>
+            </a>
+        </div>
+
+        <nav class="nav-links">
+            <a href="index.html">بازگشت به خانه</a>
+            <a href="gallery.html">ادامه خرید</a>
+        </nav>
+    </header>
+
+    <div class="cart-container">
+        <h2 class="section-title">سبد خرید شما</h2>
+
+        <div id="cart-content" class="cart-glass-panel">
+            <!-- محتوای سبد خرید توسط JavaScript ساخته می‌شود -->
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <script>
+        const SUPPORT_ID = '@Mohre_namaz_ehsan';
+        const RUBIKA_URL = 'https://rubika.ir/Mohre_namaz_ehsan';
+        const EITAA_URL = 'https://eitaa.com/Mohr_namaz';
+
+        // اصلاح کلید ذخیره‌سازی برای هماهنگی با گالری
+        function getCart() {
+            return JSON.parse(localStorage.getItem('ehsan_cart')) || [];
+        }
+
+        function saveCart(cart) {
+            localStorage.setItem('ehsan_cart', JSON.stringify(cart));
+        }
+
+        function displayCart() {
+            const cart = getCart();
+            const container = document.getElementById('cart-content'); // هماهنگ با HTML شما
+
+            if (cart.length === 0) {
+                container.innerHTML = `
+                    <div class="empty-cart-msg">
+                        <p style="font-size: 1.5rem; color: #d4a373;">ارباب، سبد خرید شما خالی است!</p>
+                        <a href="gallery.html" class="btn-continue">مشاهده محصولات و افزودن به سبد</a>
+                    </div>`;
+                return;
+            }
+
+            let totalOrderPrice = 0;
+            let html = `
+            <div style="overflow-x: auto;">
+                <table class="cart-table">
+                    <thead>
+                        <tr>
+                            <th>محصول</th>
+                            <th style="text-align: center;">تعداد</th>
+                            <th style="text-align: center;">قیمت واحد</th>
+                            <th style="text-align: center;">عملیات</th>
+                        </tr>
+                    </thead>
+                    <tbody>`;
+
+            cart.forEach((item, index) => {
+                const price = Number(item.price) || 0;
+                const quantity = Number(item.quantity) || 1;
+                totalOrderPrice += (price * quantity);
+
+                html += `
+                    <tr class="cart-row">
+                        <td style="font-weight: bold; font-size: 1.1rem;">${item.name}</td>
+                        <td style="text-align: center;">
+                            <div class="quantity-controls">
+                                <button onclick="updateQty(${index}, 1)" class="qty-btn">+</button>
+                                <span class="qty-value">${quantity.toLocaleString('fa-IR')}</span>
+                                <button onclick="updateQty(${index}, -1)" class="qty-btn">-</button>
+                            </div>
+                        </td>
+                        <td style="text-align: center;">${price.toLocaleString('fa-IR')} تومان</td>
+                        <td style="text-align: center;">
+                            <button onclick="removeFromCart(${index})" class="btn-remove">حذف</button>
+                        </td>
+                    </tr>`;
+            });
+
+            html += `
+                    </tbody>
+                </table>
+                <div class="cart-summary">
+                    <div class="total-price">
+                        جمع کل سفارش: <strong style="color: #d4a373; font-family: 'BTitr';">${totalOrderPrice.toLocaleString('fa-IR')} تومان</strong>
+                    </div>
+                    <button onclick="checkout()" class="btn-checkout">تکمیل سفارش و ارسال پیام</button>
+                </div>
+            </div>`;
+
+            container.innerHTML = html;
+        }
+
+        function updateQty(index, change) {
+            const cart = getCart();
+            if (!cart[index]) return;
+            cart[index].quantity = (Number(cart[index].quantity) || 1) + change;
+            if (cart[index].quantity <= 0) {
+                removeFromCart(index);
+            } else {
+                saveCart(cart);
+                displayCart();
+            }
+        }
+
+        function removeFromCart(index) {
+            Swal.fire({
+                title: 'حذف محصول؟',
+                text: 'آیا از حذف این مورد اطمینان دارید؟',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#ff5e5e',
+                cancelButtonColor: '#0A3D2E',
+                confirmButtonText: 'بله، حذف شود',
+                cancelButtonText: 'انصراف'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    const cart = getCart();
+                    cart.splice(index, 1);
+                    saveCart(cart);
+                    displayCart();
+                }
+            });
+        }
+
+        function buildOrderMessage(user, cart) {
+            let message = `سفارش جدید از سایت برند احسان\n\n`;
+            message += `نام مشتری: ${user.name}\n`;
+            message += `شماره تماس: ${user.phone}\n\n`;
+            message += `لیست سفارشات:\n`;
+            let grandTotal = 0;
+            cart.forEach((item, index) => {
+                const price = Number(item.price) || 0;
+                const quantity = Number(item.quantity) || 1;
+                const subTotal = price * quantity;
+                grandTotal += subTotal;
+                message += `${index + 1}. ${item.name} - تعداد: ${quantity} عدد - مبلغ: ${subTotal.toLocaleString('fa-IR')} تومان\n`;
+            });
+            message += `\nجمع کل: ${grandTotal.toLocaleString('fa-IR')} تومان`;
+            return message;
+        }
+
+        function checkout() {
+            const user = JSON.parse(localStorage.getItem('ehsan_user'));
+            const cart = getCart();
+
+            if (!user || !user.name || !user.phone) {
+                Swal.fire({
+                    title: 'نیاز به ورود',
+                    text: 'ارباب، لطفاً ابتدا وارد حساب خود شوید.',
+                    icon: 'info',
+                    confirmButtonText: 'ورود / ثبت‌نام',
+                    confirmButtonColor: '#D4B26A'
+                }).then(() => window.location.href = 'login.html');
+                return;
+            }
+
+            const message = buildOrderMessage(user, cart);
+            Swal.fire({
+                title: 'پیش‌فاکتور نهایی',
+                icon: 'success',
+                width: 600,
+                confirmButtonText: 'بستن',
+                confirmButtonColor: '#D4B26A',
+                html: `
+                    <div style="text-align: right; line-height: 1.8;">
+                        <p>متن سفارش کپی شده و آماده ارسال است:</p>
+                        <div class="order-message-box" style="background:#f9f9f9; color:#333; padding:10px; border-radius:8px; font-size:0.9rem;">${message.replace(/\n/g, '<br>')}</div>
+                        <div class="support-links" style="margin-top:15px;">
+                            <button class="support-link copy" onclick="navigator.clipboard.writeText(\`${message}\`).then(() => alert('کپی شد!'))" style="width:100%; margin-bottom:10px; cursor:pointer; padding:10px; background:#d4a373; border:none; border-radius:8px;">کپی متن سفارش</button>
+                            <a href="${EITAA_URL}" target="_blank" class="support-link eitaa" style="display:block; text-decoration:none; background:#f28c28; color:white; padding:10px; border-radius:8px; text-align:center; margin-bottom:5px;">ارسال در ایتا</a>
+                            <a href="${RUBIKA_URL}" target="_blank" class="support-link rubika" style="display:block; text-decoration:none; background:#1f8cff; color:white; padding:10px; border-radius:8px; text-align:center;">ارسال در روبیکا</a>
+                        </div>
+                    </div>`
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', displayCart);
+    </script>
+
+
+    
+</body>
+</html>
